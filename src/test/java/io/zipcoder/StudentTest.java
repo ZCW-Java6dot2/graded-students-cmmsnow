@@ -34,10 +34,10 @@ public class StudentTest {
         //THIS ONE NEEDS WORK
         Student student = new Student(givenFirstName, givenLastName, givenExamScores);
         //given
-        given = student.getExamScores();
+        Integer given = student.getNumberOfExamsTaken();
         student.addExamScore(90.0);
         //when
-        actual = student.getExamScores();
+        Integer actual = student.getNumberOfExamsTaken();
         //then
         Assert.assertNotEquals(given, actual);
     }

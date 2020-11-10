@@ -28,12 +28,15 @@ public class Student {
         return lastName;
     }
 
-    public String getExamScores(){
+    public void getExamScores(){
         //returns string list of all exam scores
         //System.out.println(output);
         //         Exam Scores:
         //              Exam 1 -> 100
-        return null;
+        System.out.println("Exam Scores:");
+        for (int i=1; i<=examScores.size(); i++){
+            System.out.println("\n     Exam " + i + " -> " + examScores.get(i));
+        }
     }
 
     public void addExamScore(double examScore){
