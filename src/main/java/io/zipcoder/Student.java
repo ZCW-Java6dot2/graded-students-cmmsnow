@@ -12,7 +12,7 @@ public class Student {
         this.lastName = lastName;
     }
 
-    public void setFirstName(){
+    public void setFirstName(String firstName){
         this.firstName = firstName;
     }
 
@@ -20,7 +20,7 @@ public class Student {
         return firstName;
     }
 
-    public void setLastName(){
+    public void setLastName(String lastName){
         this.lastName = lastName;
     }
 

@@ -1,21 +1,32 @@
 package io.zipcoder;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 public class StudentTest {
+    //given
+    String given;
+    String actual;
+    String givenFirstName = "Jerry";
+    String givenLastName = "Bobo";
+    Double[] givenExamScores = {75.0, 68.0, 110.0};
 
     @Test
     public void setFirstNameTest(){
-        //given
-        //when
-        //then
+        Student student = new Student(givenFirstName, givenLastName, givenExamScores);
+        given = "Mary";
+        student.setFirstName(given);
+        actual = student.getFirstName();
+        Assert.assertEquals(given, actual);
     }
 
     @Test
     public void setLastNameTest(){
-        //given
-        //when
-        //then
+        Student student = new Student(givenFirstName, givenLastName, givenExamScores);
+        given = "Baloney";
+        student.setLastName(given);
+        actual = student.getLastName();
+        Assert.assertEquals(given, actual);
     }
 
     @Test
@@ -23,6 +34,7 @@ public class StudentTest {
         //given
         //when
         //then
+        Assert.assertEquals(given, actual);
     }
 
     @Test
@@ -30,6 +42,7 @@ public class StudentTest {
         //given
         //when
         //then
+        Assert.assertEquals(given, actual);
     }
 
     @Test
@@ -37,6 +50,7 @@ public class StudentTest {
         //given
         //when
         //then
+        Assert.assertEquals(given, actual);
     }
 
     @Test
@@ -44,6 +58,7 @@ public class StudentTest {
         //given
         //when
         //then
+        Assert.assertEquals(given, actual);
     }
 
     @Test
@@ -51,5 +66,6 @@ public class StudentTest {
         //given
         //when
         //then
+        Assert.assertEquals(given, actual);
     }
 }
