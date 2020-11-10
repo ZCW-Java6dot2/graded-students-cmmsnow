@@ -31,10 +31,15 @@ public class StudentTest {
 
     @Test
     public void addExamScoreTest(){
+        //THIS ONE NEEDS WORK
+        Student student = new Student(givenFirstName, givenLastName, givenExamScores);
         //given
+        given = student.getExamScores();
+        student.addExamScore(90.0);
         //when
+        actual = student.getExamScores();
         //then
-        Assert.assertEquals(given, actual);
+        Assert.assertNotEquals(given, actual);
     }
 
     @Test
@@ -47,14 +52,19 @@ public class StudentTest {
 
     @Test
     public void getNumbersOfExamsTakenTest(){
+        //THIS ONE NEEDS WORK
         //given
+        Student student = new Student(givenFirstName, givenLastName, givenExamScores);
+        Integer given = student.getNumberOfExamsTaken();
         //when
+        Integer actual = student.getNumberOfExamsTaken();
         //then
         Assert.assertEquals(given, actual);
     }
 
     @Test
     public void getAverageExamScoreTest(){
+        Student student = new Student(givenFirstName, givenLastName, givenExamScores);
         //given
         //when
         //then
@@ -63,6 +73,7 @@ public class StudentTest {
 
     @Test
     public void toStringTest(){
+        Student student = new Student(givenFirstName, givenLastName, givenExamScores);
         //given
         //when
         //then

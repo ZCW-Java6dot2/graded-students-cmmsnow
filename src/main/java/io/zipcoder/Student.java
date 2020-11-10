@@ -44,7 +44,7 @@ public class Student {
     public void setExamScore(int examNumber, double newScore){
         //re-assigns value to specific exam
         examScores.get(examNumber);
-        // ?? add code to change current score
+        // ?? add code to replace current score
     }
 
     public Integer getNumberOfExamsTaken(){
