@@ -1,30 +1,39 @@
 package io.zipcoder;
 
 public class Classroom {
-    Student[] students;
+    private Student[] students;
 
-    public Classroom(int maxNumberOfStudents){}
+    public Classroom(int maxNumberOfStudents){
+        this.students = new Student[maxNumberOfStudents];
+    }
 
     public Classroom(Student[] students){
         this.students = students;
     }
 
     public Classroom(){
-        //nullary constructor
-        //initializes empty array of 30 Student objects
+        this.students = new Student[30];
     }
 
     public Student[] getStudents() {
-        return students;
+        return this.students;
     }
 
     public double getAverageExamScore(){
-        //average of all students' average exam scores
-        return 0.00;
+        Double overallAverage = 0.0;
+        for (Student s : students){
+            overallAverage += s.getAverageExamScore();
+        }
+        return overallAverage/students.length;
     }
 
     public void addStudent(Student student){
-        //adds Student object to composite students list
+        Student[] newStudents = new Student[students.length + 1];
+        int i = 0;
+        for (Student s : students){
+            newStudents[i++] = s;
+        }
+        newStudents[i] = student;
     }
 
     public void removeStudent(String firstName, String lastName){

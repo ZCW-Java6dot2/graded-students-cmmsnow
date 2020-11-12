@@ -1,15 +1,18 @@
 package io.zipcoder;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Student {
-    String firstName;
-    String lastName;
-    ArrayList<Double> examScores;
+    private String firstName;
+    private String lastName;
+    private ArrayList<Double> examScores;
 
-    public Student(String firstName, String lastName, Double[] examScores){
+    public Student(String firstName, String lastName, Double[] testScores){
         this.firstName = firstName;
         this.lastName = lastName;
+        this.examScores = new ArrayList<>(Arrays.asList(testScores));
+
     }
 
     public void setFirstName(String firstName){
@@ -17,7 +20,7 @@ public class Student {
     }
 
     public String getFirstName(){
-        return firstName;
+        return this.firstName;
     }
 
     public void setLastName(String lastName){
@@ -25,29 +28,25 @@ public class Student {
     }
 
     public String getLastName(){
-        return lastName;
+        return this.lastName;
     }
 
-    public void getExamScores(){
-        //returns string list of all exam scores
-        //System.out.println(output);
-        //         Exam Scores:
-        //              Exam 1 -> 100
-        System.out.println("Exam Scores:");
-        for (int i=1; i<=examScores.size(); i++){
-            System.out.println("\n     Exam " + i + " -> " + examScores.get(i));
+    public String getExamScores(){
+        StringBuilder str= new StringBuilder();
+        str.append("Exam Scores:\n");
+        for (int i = 0; i < examScores.size(); i++) {
+            String strFormat= String.format("%1.1f", examScores.get(i));
+            str.append("Exam " + (i+1) + " -> " + strFormat+ "\n");
         }
+        return str.toString();
     }
 
-    public void addExamScore(double examScore){
-        //adds examScore to composite List examScores
-        examScores.add(examScore);
+    public void addExamScore(double testScore){
+        examScores.add(testScore);
     }
 
     public void setExamScore(int examNumber, double newScore){
-        //re-assigns value to specific exam
-        examScores.get(examNumber);
-        // ?? add code to replace current score
+        examScores.set(examNumber, newScore);
     }
 
     public Integer getNumberOfExamsTaken(){
@@ -62,13 +61,18 @@ public class Student {
         return (average/examScores.size());
     }
 
+    @Override
     public String toString(){
-        //override
         //System.out.println(output);
         //           Student Name: Bob Boob
         //              > Average Score: 125
         //              > Exam Scores:
         //                  Exam 1 -> 100
-        return null;
+        StringBuilder str= new StringBuilder();
+        str.append("Student Name: " + firstName +" "+ lastName + "\n");
+        String storeAvgScore=String.format("%1.2f",getAverageExamScore());
+        str.append("Average Score: " + storeAvgScore + "\n");
+        str.append(this.getExamScores());
+        return str.toString();
     }
 }

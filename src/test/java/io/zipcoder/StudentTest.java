@@ -1,23 +1,23 @@
 package io.zipcoder;
 
 import org.junit.Assert;
-import org.junit.Test;
+import org.junit.*;
 
 public class StudentTest {
-    //given
+
     String given;
     String actual;
+    private Double[] givenExamScores = {75.0, 68.0, 110.0};
     String givenFirstName = "Jerry";
     String givenLastName = "Bobo";
-    Double[] givenExamScores = {75.0, 68.0, 110.0};
+    Student student = new Student(givenFirstName, givenLastName, givenExamScores);
+
 
     @Test
     public void setFirstNameTest(){
-        Student student = new Student(givenFirstName, givenLastName, givenExamScores);
-        given = "Mary";
+        String given = "Eric";
         student.setFirstName(given);
-        actual = student.getFirstName();
-        Assert.assertEquals(given, actual);
+        Assert.assertEquals(student.getFirstName(), given);
     }
 
     @Test
@@ -31,34 +31,35 @@ public class StudentTest {
 
     @Test
     public void addExamScoreTest(){
-        //THIS ONE NEEDS WORK
         Student student = new Student(givenFirstName, givenLastName, givenExamScores);
-        //given
-        Integer given = student.getNumberOfExamsTaken();
+
+        Integer expected = (givenExamScores.length + 1);
         student.addExamScore(90.0);
-        //when
+
         Integer actual = student.getNumberOfExamsTaken();
-        //then
-        Assert.assertNotEquals(given, actual);
+
+        Assert.assertEquals(expected, actual);
     }
 
     @Test
     public void setExamScoreTest(){
+        Student student = new Student(givenFirstName, givenLastName, givenExamScores);
         //given
+        Double given = givenExamScores[1];
         //when
+        student.setExamScore(1, 100.0);
         //then
-        Assert.assertEquals(given, actual);
+        Double actual = givenExamScores[1];
+        Assert.assertNotEquals(given, actual);
     }
 
     @Test
     public void getNumbersOfExamsTakenTest(){
-        //THIS ONE NEEDS WORK
-        //given
         Student student = new Student(givenFirstName, givenLastName, givenExamScores);
-        Integer given = student.getNumberOfExamsTaken();
-        //when
+        Integer given = givenExamScores.length;
+
         Integer actual = student.getNumberOfExamsTaken();
-        //then
+
         Assert.assertEquals(given, actual);
     }
 
@@ -66,17 +67,18 @@ public class StudentTest {
     public void getAverageExamScoreTest(){
         Student student = new Student(givenFirstName, givenLastName, givenExamScores);
         //given
+        Double sum = givenExamScores[0] + givenExamScores[1] + givenExamScores[2];
+        Double expected = sum/3;
         //when
+        student.getAverageExamScore();
         //then
-        Assert.assertEquals(given, actual);
+        Assert.assertEquals(expected, actual);
     }
 
     @Test
     public void toStringTest(){
         Student student = new Student(givenFirstName, givenLastName, givenExamScores);
-        //given
-        //when
-        //then
-        Assert.assertEquals(given, actual);
+
+        Assert.assertNotNull(student.toString());
     }
 }
