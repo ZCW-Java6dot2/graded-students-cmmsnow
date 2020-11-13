@@ -3,10 +3,13 @@ package io.zipcoder;
 import org.junit.Assert;
 import org.junit.*;
 
+import java.util.ArrayList;
+
 public class StudentTest {
 
     String given;
     String actual;
+    //private ArrayList<Double> givenExamScores = {75.0, 68.0, 110.0};
     private Double[] givenExamScores = {75.0, 68.0, 110.0};
     String givenFirstName = "Jerry";
     String givenLastName = "Bobo";
@@ -76,9 +79,19 @@ public class StudentTest {
     }
 
     @Test
-    public void toStringTest(){
-        Student student = new Student(givenFirstName, givenLastName, givenExamScores);
-
-        Assert.assertNotNull(student.toString());
+    public void toStringTest() {
+        // : Given
+        String firstName = "Leon";
+        String lastName = "Hunter";
+        ArrayList<Double> examScores = new ArrayList<>();
+        examScores.add(100.0);
+        examScores.add(150.0);
+        examScores.add(250.0);
+        examScores.add(0.0);
+        Student student = new Student(firstName, lastName, examScores);
+        // When
+        String output = student.toString();
+        // Then
+        System.out.println(output);
     }
 }

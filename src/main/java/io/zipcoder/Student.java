@@ -46,7 +46,11 @@ public class Student {
     }
 
     public void setExamScore(int examNumber, double newScore){
-        examScores.set(examNumber, newScore);
+        //examScores.set(examNumber-1, newScore);
+        String string = "";
+        for (int i = 0; i < examScores.size(); i++) {
+            string += "Exam" + i+1 + "->" + examScores.get(i);
+        }
     }
 
     public Integer getNumberOfExamsTaken(){
@@ -63,11 +67,6 @@ public class Student {
 
     @Override
     public String toString(){
-        //System.out.println(output);
-        //           Student Name: Bob Boob
-        //              > Average Score: 125
-        //              > Exam Scores:
-        //                  Exam 1 -> 100
         StringBuilder str= new StringBuilder();
         str.append("Student Name: " + firstName +" "+ lastName + "\n");
         String storeAvgScore=String.format("%1.2f",getAverageExamScore());
