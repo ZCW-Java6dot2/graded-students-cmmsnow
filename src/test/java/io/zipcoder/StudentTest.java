@@ -9,12 +9,11 @@ public class StudentTest {
 
     String given;
     String actual;
-    //private ArrayList<Double> givenExamScores = {75.0, 68.0, 110.0};
-    private Double[] givenExamScores = {75.0, 68.0, 110.0};
     String givenFirstName = "Jerry";
     String givenLastName = "Bobo";
-    Student student = new Student(givenFirstName, givenLastName, givenExamScores);
-
+    private Double[] givenTestScores = {75.0, 68.0, 110.0};
+    Student student = new Student(givenFirstName, givenLastName, givenTestScores);
+    private ArrayList<Double> givenExamScores = new ArrayList<>();
 
     @Test
     public void setFirstNameTest(){
@@ -25,7 +24,7 @@ public class StudentTest {
 
     @Test
     public void setLastNameTest(){
-        Student student = new Student(givenFirstName, givenLastName, givenExamScores);
+        Student student = new Student(givenFirstName, givenLastName, givenTestScores);
         given = "Baloney";
         student.setLastName(given);
         actual = student.getLastName();
@@ -34,11 +33,8 @@ public class StudentTest {
 
     @Test
     public void addExamScoreTest(){
-        Student student = new Student(givenFirstName, givenLastName, givenExamScores);
-
-        Integer expected = (givenExamScores.length + 1);
-        student.addExamScore(90.0);
-
+        Student student = new Student(givenFirstName, givenLastName, givenTestScores);
+        Integer expected = 3;
         Integer actual = student.getNumberOfExamsTaken();
 
         Assert.assertEquals(expected, actual);
@@ -46,34 +42,42 @@ public class StudentTest {
 
     @Test
     public void setExamScoreTest(){
-        Student student = new Student(givenFirstName, givenLastName, givenExamScores);
+        Student student = new Student(givenFirstName, givenLastName, givenTestScores);
+        givenExamScores.add(givenTestScores[0]);
+        givenExamScores.add(givenTestScores[1]);
+        givenExamScores.add(givenTestScores[2]);
         //given
-        Double given = givenExamScores[1];
+        Double expected = 100.0;
         //when
-        student.setExamScore(1, 100.0);
+        student.setExamScore(1, expected);
         //then
-        Double actual = givenExamScores[1];
+        Double actual = givenExamScores.get(1);
         Assert.assertNotEquals(given, actual);
     }
 
     @Test
     public void getNumbersOfExamsTakenTest(){
-        Student student = new Student(givenFirstName, givenLastName, givenExamScores);
-        Integer given = givenExamScores.length;
+        Student student = new Student(givenFirstName, givenLastName, givenTestScores);
+        givenExamScores.add(givenTestScores[0]);
+        givenExamScores.add(givenTestScores[1]);
+        givenExamScores.add(givenTestScores[2]);
+        Integer expected = 3;
 
         Integer actual = student.getNumberOfExamsTaken();
 
-        Assert.assertEquals(given, actual);
+        Assert.assertEquals(expected, actual);
     }
 
     @Test
     public void getAverageExamScoreTest(){
-        Student student = new Student(givenFirstName, givenLastName, givenExamScores);
+        Student student = new Student(givenFirstName, givenLastName, givenTestScores);
+        givenExamScores.add(givenTestScores[0]);
+        givenExamScores.add(givenTestScores[1]);
+        givenExamScores.add(givenTestScores[2]);
         //given
-        Double sum = givenExamScores[0] + givenExamScores[1] + givenExamScores[2];
-        Double expected = sum/3;
+        Double expected = (75.0 + 68.0 + 110.0)/3;
         //when
-        student.getAverageExamScore();
+        Double actual = student.getAverageExamScore();
         //then
         Assert.assertEquals(expected, actual);
     }
@@ -81,17 +85,22 @@ public class StudentTest {
     @Test
     public void toStringTest() {
         // : Given
-        String firstName = "Leon";
-        String lastName = "Hunter";
-        ArrayList<Double> examScores = new ArrayList<>();
-        examScores.add(100.0);
-        examScores.add(150.0);
-        examScores.add(250.0);
-        examScores.add(0.0);
-        Student student = new Student(firstName, lastName, examScores);
+        Student student = new Student(givenFirstName, givenLastName, givenTestScores);
+        givenExamScores.add(givenTestScores[0]);
+        givenExamScores.add(givenTestScores[1]);
+        givenExamScores.add(givenTestScores[2]);
         // When
-        String output = student.toString();
+        StringBuilder str= new StringBuilder();
+        str.append("Student Name: " + student.getFirstName() + " " + student.getLastName() + "\n");
+        str.append("Average Score: " + String. format("%.2f", student.getAverageExamScore()) + "\n");
+        str.append("Exam Scores:\n");
+        for (int i = 0; i < givenExamScores.size(); i++) {
+            String strFormat= String.format("%1.1f", givenExamScores.get(i));
+            str.append("Exam " + (i+1) + " -> " + strFormat+ "\n");
+        }
+        String given = str.toString();
+        String actual = student.toString();
         // Then
-        System.out.println(output);
+        Assert.assertEquals(given, actual);
     }
 }

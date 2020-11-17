@@ -46,11 +46,7 @@ public class Student {
     }
 
     public void setExamScore(int examNumber, double newScore){
-        //examScores.set(examNumber-1, newScore);
-        String string = "";
-        for (int i = 0; i < examScores.size(); i++) {
-            string += "Exam" + i+1 + "->" + examScores.get(i);
-        }
+        examScores.set(examNumber, newScore);
     }
 
     public Integer getNumberOfExamsTaken(){
