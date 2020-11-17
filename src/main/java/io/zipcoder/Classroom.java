@@ -37,8 +37,16 @@ public class Classroom {
     }
 
     public void removeStudent(String firstName, String lastName){
-        //ensure array is reordered after removal
-        //null values should be at back.
+        Student[] newArray = new Student[students.length-1];
+        for (int i=0; i< students.length; i++){
+            if ((!students[i].getFirstName().equals(firstName) || !students[i].getLastName().equals(lastName))){
+                newArray[i] = students[i];
+            } else if ((students[i].getFirstName().equals(firstName) && students[i].getLastName().equals(lastName))){
+                students[i] = null;
+                newArray[newArray.length-1] = students[i];
+                //how to fill the rest of the array?
+            }
+        }
     }
 
     public void getStudentsByScore(){
