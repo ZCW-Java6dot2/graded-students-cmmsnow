@@ -3,7 +3,7 @@ package io.zipcoder;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class Student {
+public class Student implements Comparable<Student>{
     private String firstName;
     private String lastName;
     private ArrayList<Double> examScores;
@@ -69,5 +69,18 @@ public class Student {
         str.append("Average Score: " + storeAvgScore + "\n");
         str.append(this.getExamScores());
         return str.toString();
+    }
+
+    @Override
+    public int compareTo(Student s) {
+        //-1 : left is less than right
+        if (this.getAverageExamScore() > s.getAverageExamScore()) {
+            return -1;
+            //1 : left is greater than right
+        } else if (this.getAverageExamScore() < s.getAverageExamScore()) {
+            return 1;
+        } else { //exam scores are equal, so comparing last name strings
+            return this.getLastName().compareTo(s.getLastName());
+        }
     }
 }

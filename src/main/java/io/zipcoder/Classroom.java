@@ -2,7 +2,7 @@ package io.zipcoder;
 
 import java.util.*;
 
-public class Classroom implements Comparable<Student> {
+public class Classroom {
     private Student[] students;
 
     public Classroom(int maxNumberOfStudents){
@@ -44,21 +44,13 @@ public class Classroom implements Comparable<Student> {
                 students[i] = null;
             }
         }
-        Arrays.sort(students, new SortNulls());  //Used to sort students based on if they're null or not
+        Arrays.sort(students, new SortNulls());  //sort students based on if they're null
     }
 
-    public void getStudentsByScore(){
-//        for (int i=0; i<students.length; i++){
-//            Double score = students[i].getAverageExamScore();
-//            score.compareTo()
-//        }
-
-//        Comparator<Student> comparator = Comparator.comparing(Student::getAverageExamScore);
-//        ArrayList<Student> studentList = new ArrayList<>();
-//        for (int i=0; i< students.length; i++){
-//            studentList.add(students[i]);
-//        }
-//        Collections.sort(studentList, comparator);
+    public Student[] getStudentsByScore(){
+        ArrayList<Student> studentsList = new ArrayList<>(Arrays.asList(students));
+        Collections.sort(studentsList);
+        return studentsList.toArray(new Student[studentsList.size()]);
     }
 
     public Map<String, Character> getGradeBook(){
@@ -87,25 +79,4 @@ public class Classroom implements Comparable<Student> {
         }
         return gradeBook;
     }
-
-    @Override
-    public int compareTo(Student o) {
-//        int answer = this.student.getAverageExamScore().compareTo(o.getAverageExamScore());
-//        return answer == 0 ? this.type.compareTo(o.getType()) : answer;
-        return 0;
-    }
-
-//    @Override
-//    public boolean equals(Object o) {
-//        if (this == o) return true;
-//        if (o == null || getClass() != o.getClass()) return false;
-//        Student student = (Student) o;
-//        return Objects.equals(getAverageExamScore(), student.getAverageExamScore()) &&
-//                Objects.equals(student.getFirstName(), student.getFirstName());
-//    }
-
-//    @Override
-//    public int hashCode() {
-//        return Objects.hash(getAverageExamScore(), getFirstName());
-//    }
 }
