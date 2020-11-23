@@ -4,6 +4,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
+
 public class ClassroomTest {
     private Double[] givenTestScoresA = {79.0, 80.0, 100.0};
     private Double[] givenTestScoresB = {95.0, 99.0, 83.0};
@@ -77,7 +79,10 @@ public class ClassroomTest {
         theStudents[2] = studentC;
         Classroom classroom = new Classroom(theStudents);
         //given
+
         //when
+        classroom.getStudentsByScore();
+
         //then
     }
 
